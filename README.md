@@ -93,6 +93,13 @@ respond_to do |format|
 end
 ```
 
+### Add col_sep for Field Separator (delimiter)
+
+```ruby
+respond_to do |format|
+  format.csv  { render csv: @locations, col_sep: "\t" }
+end
+```
 ## Copyright
 
 Copyright © 2011-2014 Peter Brown. See LICENSE.txt for

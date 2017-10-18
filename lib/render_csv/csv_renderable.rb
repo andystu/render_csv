@@ -15,8 +15,10 @@ module RenderCsv
       columns &= options[:only].map(&:to_s) if options[:only]
       columns -= options[:except].map(&:to_s) if options[:except]
       columns += options[:add_methods].map(&:to_s) if options[:add_methods]
-
-      CSV.generate(encoding: 'utf-8') do |row|
+      col_sep = ","
+      col_sep = options[:col_sep] if options[:col_sep]
+      
+      CSV.generate(encoding: 'utf-8', col_sep: col_sep) do |row|
         row << columns
         self.each do |obj|
           row << columns.map { |c| obj.send(c) }
